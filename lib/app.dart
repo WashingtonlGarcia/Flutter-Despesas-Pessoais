@@ -1,23 +1,8 @@
-import 'package:despesasPessoais/models/transaction.dart';
+import 'package:despesasPessoais/components/transaction_user.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class App extends StatelessWidget {
-  final _transactions = [
-    Transaction(
-      id: "ti",
-      title: "Novo Tênis de Corrida",
-      value: 310.76,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: "t2",
-      title: "Conta de luz",
-      value: 211.30,
-      date: DateTime.now(),
-    )
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +13,6 @@ class App extends StatelessWidget {
         ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             Container(
               // width: double.infinity,
@@ -38,49 +22,7 @@ class App extends StatelessWidget {
                 child: Text('Grafico'),
               ),
             ),
-            Column(
-              children: _transactions.map((tr) {
-                return Card(
-                  child: Row(
-                    children: <Widget>[
-                      Container(
-                        margin:
-                            EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            width: 2,
-                            color: Colors.purple,
-                          ),
-                        ),
-                        padding: EdgeInsets.all(10),
-                        child: Text(tr.valueGet,
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                              color: Colors.purple,
-                            )),
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            tr.title,
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 16),
-                          ),
-                          Text(
-                            tr.dateGet,
-                            style: TextStyle(
-                              color: Colors.grey,
-                            ),
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                );
-              }).toList(),
-            )
+            TransactionUser()
           ],
         ));
   }
