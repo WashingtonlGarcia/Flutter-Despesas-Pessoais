@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:intl/intl.dart';
 
 class Transaction {
   final String id;
@@ -10,4 +11,6 @@ class Transaction {
       @required this.title,
       @required this.value,
       @required this.date});
+  get dateGet => DateFormat("d MMM y").format(this.date).toString();
+  get valueGet => "R\$ ${value.toStringAsFixed(2)}";
 }

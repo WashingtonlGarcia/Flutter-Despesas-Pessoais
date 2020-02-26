@@ -23,6 +23,8 @@ class App extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: Text("Despesas Pessoais"),
+          backgroundColor: Colors.purple,
+          centerTitle: true,
         ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -47,16 +49,31 @@ class App extends StatelessWidget {
                         decoration: BoxDecoration(
                           border: Border.all(
                             width: 2,
-                            color: Colors.black,
+                            color: Colors.purple,
                           ),
                         ),
                         padding: EdgeInsets.all(10),
-                        child: Text(tr.value.toString()),
+                        child: Text(tr.valueGet,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                              color: Colors.purple,
+                            )),
                       ),
                       Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Text(tr.title),
-                          Text(tr.date.toString())
+                          Text(
+                            tr.title,
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 16),
+                          ),
+                          Text(
+                            tr.dateGet,
+                            style: TextStyle(
+                              color: Colors.grey,
+                            ),
+                          )
                         ],
                       )
                     ],
