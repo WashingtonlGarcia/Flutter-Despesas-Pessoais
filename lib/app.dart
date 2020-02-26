@@ -1,6 +1,5 @@
-import 'package:despesasPessoais/components/transaction_user.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import './components/transaction_user.dart';
 
 class App extends StatelessWidget {
   @override

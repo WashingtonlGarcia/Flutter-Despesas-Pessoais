@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 class TransactionForm extends StatelessWidget {
   final titleController = TextEditingController();
   final valueController = TextEditingController();
-
+  final void Function(String, double) onSubmit;
+  TransactionForm({@required this.onSubmit});
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -27,8 +28,8 @@ class TransactionForm extends StatelessWidget {
                     hoverColor: Colors.purpleAccent,
                     color: Colors.purple,
                     onPressed: () {
-                      print(titleController.text);
-                      print(valueController.text);
+                      onSubmit(this.titleController.text,
+                          double.parse(this.valueController.text));
                     },
                     child: Text(
                       "Nova Transação",
