@@ -4,5 +4,8 @@ import 'app.dart';
 void main() => runApp(MaterialApp(
   home: App(),
   debugShowCheckedModeBanner: false,
+  theme: ThemeData(
+    
+  ),
 ));
 
