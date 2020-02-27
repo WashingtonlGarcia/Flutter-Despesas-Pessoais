@@ -15,14 +15,36 @@ class ChartBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Text('R\$${value.toStringAsFixed(2)}'),
+        FittedBox(
+          child: Text(
+            'R\$${value.toStringAsFixed(2)}',
+          ),
+        ),
         SizedBox(
           height: 5,
         ),
         Container(
           height: 60,
           width: 10,
-          child: null,
+          child: Stack(
+            alignment: Alignment.bottomCenter,
+            children: <Widget>[
+              Container(
+                decoration: BoxDecoration(
+                    border: Border.all(width: 1.0, color: Colors.grey),
+                    color: Color.fromRGBO(220, 220, 220, 1),
+                    borderRadius: BorderRadius.circular(5)),
+              ),
+              FractionallySizedBox(
+                heightFactor: percentage,
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: Theme.of(context).primaryColor,
+                      borderRadius: BorderRadius.circular(5)),
+                ),
+              ),
+            ],
+          ),
         ),
         SizedBox(
           height: 5,
