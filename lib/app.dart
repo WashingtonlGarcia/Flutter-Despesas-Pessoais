@@ -58,7 +58,6 @@ class _AppState extends State<App> {
                 child: Text('Grafico'),
               ),
             ),
-           
             TransactionList(transactions: _transactions),
           ],
         ),
