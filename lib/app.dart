@@ -51,7 +51,7 @@ class _AppState extends State<App> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Despesas Pessoais"),
-        backgroundColor: Colors.purple,
+        //backgroundColor: Theme.of(context).primaryColor,
         centerTitle: true,
         actions: <Widget>[
           IconButton(
@@ -77,7 +77,6 @@ class _AppState extends State<App> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.purple,
         onPressed: () => _openTransactionFormModal(context),
         child: Icon(Icons.add),
       ),
