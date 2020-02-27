@@ -11,20 +11,7 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  final _transactions = [
-    Transaction(
-      id: "t1",
-      title: "Novo Tênis de Corrida",
-      value: 310.76,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: "t2",
-      title: "Conta de luz",
-      value: 211.30,
-      date: DateTime.now(),
-    )
-  ];
+  final List<Transaction> _transactions = [];
 
   _addTransaction(String title, double value) {
     final newTransaction = Transaction(
@@ -71,6 +58,7 @@ class _AppState extends State<App> {
                 child: Text('Grafico'),
               ),
             ),
+           
             TransactionList(transactions: _transactions),
           ],
         ),
