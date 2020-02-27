@@ -42,7 +42,7 @@ class _AppState extends State<App> {
     showModalBottomSheet(
         context: context,
         builder: (_) {
-          return TransactionForm(onSubmit: null);
+          return TransactionForm(onSubmit: _addTransaction);
         });
   }
 
