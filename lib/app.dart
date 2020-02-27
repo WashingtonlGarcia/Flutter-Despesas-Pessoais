@@ -36,6 +36,7 @@ class _AppState extends State<App> {
     setState(() {
       _transactions.add(newTransaction);
     });
+    Navigator.pop(context);
   }
 
   _openTransactionFormModal(BuildContext context) {
