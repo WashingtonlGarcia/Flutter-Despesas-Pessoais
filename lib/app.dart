@@ -1,3 +1,4 @@
+import 'package:despesasPessoais/components/chart.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 
@@ -11,7 +12,28 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  final List<Transaction> _transactions = [];
+  final List<Transaction> _transactions = [
+    Transaction(
+        id: 't0',
+        title: "Conta Antiga",
+        value: 310.76,
+        date: DateTime.now().subtract(Duration(days: 33))),
+    Transaction(
+        id: 't1',
+        title: "Novo Tênis de Corrida",
+        value: 310.76,
+        date: DateTime.now().subtract(Duration(days: 3))),
+    Transaction(
+        id: 't2',
+        title: "Conta de Luz",
+        value: 211.30,
+        date: DateTime.now().subtract(Duration(days: 4))),
+  ];
+  List<Transaction> get _recenteTransactions {
+    return _transactions.where((element) {
+      return element.date.isAfter(DateTime.now().subtract(Duration(days: 7)));
+    }).toList();
+  }
 
   _addTransaction(String title, double value) {
     final newTransaction = Transaction(
@@ -50,13 +72,8 @@ class _AppState extends State<App> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Container(
-              // width: double.infinity,
-              child: Card(
-                color: Colors.blue,
-                elevation: 5,
-                child: Text('Grafico'),
-              ),
+            Chart(
+              recentTransaction: _recenteTransactions,
             ),
             TransactionList(transactions: _transactions),
           ],
