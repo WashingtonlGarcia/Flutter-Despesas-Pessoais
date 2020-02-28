@@ -39,6 +39,12 @@ class _AppState extends State<App> {
         });
   }
 
+  _removerTransaction(String id) {
+    setState(() {
+      _transactions.removeWhere((element) => element.id == id);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,7 +65,10 @@ class _AppState extends State<App> {
             Chart(
               recentTransaction: _recenteTransactions,
             ),
-            TransactionList(transactions: _transactions),
+            TransactionList(
+              transactions: _transactions,
+              removerTransction: _removerTransaction,
+            ),
           ],
         ),
       ),
