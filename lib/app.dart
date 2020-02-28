@@ -1,4 +1,4 @@
-import 'package:despesasPessoais/components/chart.dart';
+import './components/chart.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 
@@ -25,6 +25,21 @@ class _AppState extends State<App> {
         date: DateTime.now().subtract(Duration(days: 3))),
     Transaction(
         id: 't2',
+        title: "Conta de Luz",
+        value: 211.30,
+        date: DateTime.now().subtract(Duration(days: 4))),
+    Transaction(
+        id: 't3',
+        title: "Conta Antiga",
+        value: 310.76,
+        date: DateTime.now().subtract(Duration(days: 33))),
+    Transaction(
+        id: 't4',
+        title: "Novo Tênis de Corrida",
+        value: 310.76,
+        date: DateTime.now().subtract(Duration(days: 3))),
+    Transaction(
+        id: 't5',
         title: "Conta de Luz",
         value: 211.30,
         date: DateTime.now().subtract(Duration(days: 4))),

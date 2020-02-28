@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 
 class Chart extends StatelessWidget {
   final List<Transaction> recentTransaction;
+
   Chart({@required this.recentTransaction});
   List<Map<String, Object>> get groupedTransactions {
     return List.generate(7, (index) {
@@ -18,8 +19,7 @@ class Chart extends StatelessWidget {
           totalSum += recentTransaction[i].value;
         }
       }
-      print(DateFormat.E().format(weekDay)[0]);
-      print(totalSum);
+
       return {
         'day': DateFormat.E().format(weekDay)[0],
         'value': totalSum,
@@ -47,8 +47,8 @@ class Chart extends StatelessWidget {
                 fit: FlexFit.tight,
                 flex: 1,
                 child: ChartBar(
-                  label: e["day"],
-                  value: e["value"],
+                  label: e['day'],
+                  value: e['value'],
                   percentage: (e['value'] as double) / _weekTotalValue,
                 ),
               );
