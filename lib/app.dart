@@ -19,6 +19,7 @@ class _AppState extends State<App> {
     }).toList();
   }
 
+  bool _value = false;
   _addTransaction(String title, double value, DateTime date) {
     final newTransaction = Transaction(
         id: Random().nextDouble().toString(),
@@ -47,14 +48,27 @@ class _AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
+    bool _isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
+    // SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     final appBar = AppBar(
-      title: Text("Despesas Pessoais"),
+      title: Text(
+        "Despesas Pessoais",
+      ),
       //backgroundColor: Theme.of(context).primaryColor,
       centerTitle: true,
       actions: <Widget>[
+        if (_isLandscape)
+          IconButton(
+              icon: Icon(_value ? Icons.list : Icons.show_chart),
+              onPressed: () {
+                setState(() {
+                  _value = !_value;
+                });
+              }),
         IconButton(
             icon: Icon(Icons.add),
-            onPressed: () => _openTransactionFormModal(context))
+            onPressed: () => _openTransactionFormModal(context)),
       ],
     );
     final availableHeight = MediaQuery.of(context).size.height -
@@ -66,19 +80,20 @@ class _AppState extends State<App> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Container(
-              height: availableHeight * 0.3,
-              child: Chart(
-                recentTransaction: _recenteTransactions,
-              ),
-            ),
-            Container(
-              height: availableHeight * 0.7,
-              child: TransactionList(
-                transactions: _transactions,
-                removerTransction: _removerTransaction,
-              ),
-            ),
+            if (_value || !_isLandscape)
+              Container(
+                  height: availableHeight * (_isLandscape ? 0.7 : 0.3),
+                  child: Chart(
+                    recentTransaction: _recenteTransactions,
+                  )),
+            if (!_value || !_isLandscape)
+              Container(
+                height: availableHeight * 0.7,
+                child: TransactionList(
+                  transactions: _transactions,
+                  removerTransction: _removerTransaction,
+                ),
+              )
           ],
         ),
       ),
