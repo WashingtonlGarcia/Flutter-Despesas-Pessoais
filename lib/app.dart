@@ -1,6 +1,7 @@
 import './components/chart.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
+import 'dart:io';
 
 import 'components/transaction_form.dart';
 import 'components/transaction_list.dart';
@@ -97,7 +98,9 @@ class _AppState extends State<App> {
           ],
         ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButtonLocation: Platform.isIOS
+          ? Container()
+          : FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
         onPressed: () => _openTransactionFormModal(context),
         child: Icon(Icons.add),
