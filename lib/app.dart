@@ -48,8 +48,8 @@ class _AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
-    bool _isLandscape =
-        MediaQuery.of(context).orientation == Orientation.landscape;
+    final mediaQuery = MediaQuery.of(context);
+    bool _isLandscape = mediaQuery.orientation == Orientation.landscape;
     // SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     final appBar = AppBar(
       title: Text(
@@ -71,9 +71,9 @@ class _AppState extends State<App> {
             onPressed: () => _openTransactionFormModal(context)),
       ],
     );
-    final availableHeight = MediaQuery.of(context).size.height -
+    final availableHeight = mediaQuery.size.height -
         appBar.preferredSize.height -
-        MediaQuery.of(context).padding.top;
+        mediaQuery.padding.top;
     return Scaffold(
       appBar: appBar,
       body: SingleChildScrollView(
@@ -88,7 +88,7 @@ class _AppState extends State<App> {
                   )),
             if (!_value || !_isLandscape)
               Container(
-                height: availableHeight * 0.7,
+                height: availableHeight * (_isLandscape ? 1 : 0.7),
                 child: TransactionList(
                   transactions: _transactions,
                   removerTransction: _removerTransaction,
