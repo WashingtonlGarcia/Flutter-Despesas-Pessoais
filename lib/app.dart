@@ -67,9 +67,11 @@ class _AppState extends State<App> {
     final mediaQuery = MediaQuery.of(context);
     bool _isLandscape = mediaQuery.orientation == Orientation.landscape;
     // SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+    final iconList = platformIOS ? CupertinoIcons.refresh : Icons.list;
+    final charList = platformIOS ? CupertinoIcons.refresh : Icons.show_chart;
     final actions = <Widget>[
       if (_isLandscape)
-        _getIconButton(_value ? Icons.list : Icons.show_chart, () {
+        _getIconButton(_value ? iconList : charList, () {
           setState(() {
             _value = !_value;
           });
@@ -97,7 +99,8 @@ class _AppState extends State<App> {
     final availableHeight = mediaQuery.size.height -
         appBar.preferredSize.height -
         mediaQuery.padding.top;
-    final bodyPage = SingleChildScrollView(
+    final bodyPage = SafeArea(
+        child: SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
@@ -117,7 +120,7 @@ class _AppState extends State<App> {
             )
         ],
       ),
-    );
+    ));
     return platformIOS
         ? CupertinoPageScaffold(
             navigationBar: appBar,
