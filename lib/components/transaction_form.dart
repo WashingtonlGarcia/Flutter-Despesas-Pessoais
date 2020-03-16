@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
+import 'adaptative_date_picker.dart';
 import './adaptative_button.dart';
 import 'adaptative_textfield.dart';
 
@@ -28,22 +28,6 @@ class _TransactionFormState extends State<TransactionForm> {
       return;
     }
     widget.onSubmit(title, value, _selectedDate);
-  }
-
-  _showDatePicker() {
-    showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2019),
-      lastDate: DateTime.now(),
-    ).then((pickedDate) {
-      if (pickedDate == null) {
-        return;
-      }
-      setState(() {
-        _selectedDate = pickedDate;
-      });
-    });
   }
 
   @override
@@ -78,27 +62,14 @@ class _TransactionFormState extends State<TransactionForm> {
                 textEditingController: _valueController,
                 onSubmint: (_) => _submitForm,
               ),
-              Container(
-                height: 70,
-                child: Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: Text(
-                        _selectedDate == null
-                            ? 'Nenhuma data selecionada!'
-                            : "Data selecionada: ${DateFormat("d/MM/y").format(this._selectedDate).toString()}",
-                      ),
-                    ),
-                    FlatButton(
-                        textColor: Theme.of(context).primaryColor,
-                        onPressed: _showDatePicker,
-                        child: Text(
-                          "Selecionar Data",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ))
-                  ],
-                ),
-              ),
+              AdaptativeDatePicker(
+                  selectedDate: _selectedDate,
+                  onDateChanged: (newDate) {
+                    setState(() {
+                      _selectedDate = newDate;
+                    });
+                  }),
+              // Novo Componente
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
