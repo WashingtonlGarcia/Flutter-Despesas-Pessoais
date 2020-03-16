@@ -35,7 +35,7 @@ class _AppState extends State<App> {
     Navigator.pop(context);
   }
 
-  final platformIOS = Platform.isIOS;
+  final platformIOS = Platform.isAndroid;
   _openTransactionFormModal(BuildContext context) {
     showModalBottomSheet(
         context: context,
