@@ -15,7 +15,7 @@ class AdaptativeTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Platform.isAndroid
+    return Platform.isIOS
         ? Padding(
             padding: EdgeInsets.only(bottom: 10),
             child: CupertinoTextField(

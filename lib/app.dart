@@ -35,7 +35,7 @@ class _AppState extends State<App> {
     Navigator.pop(context);
   }
 
-  final platformIOS = Platform.isAndroid;
+  final platformIOS = Platform.isIOS;
   _openTransactionFormModal(BuildContext context) {
     showModalBottomSheet(
         context: context,
@@ -79,7 +79,7 @@ class _AppState extends State<App> {
       _getIconButton(platformIOS ? CupertinoIcons.add : Icons.add,
           () => _openTransactionFormModal(context)),
     ];
-    final PreferredSizeWidget appBar = platformIOS
+    final PreferredSizeWidget appBar = Platform.isIOS
         ? CupertinoNavigationBar(
             middle: Text(
               "Despesas Pessoais",

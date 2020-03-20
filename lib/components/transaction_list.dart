@@ -1,3 +1,4 @@
+import 'package:despesasPessoais/components/transaction_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -39,45 +40,8 @@ class TransactionList extends StatelessWidget {
           itemCount: transactions.length,
           itemBuilder: (ctx, index) {
             final tr = transactions[index];
-            return Card(
-              elevation: 5,
-              margin: EdgeInsets.symmetric(
-                vertical: 8,
-                horizontal: 5,
-              ),
-              child: ListTile(
-                leading: CircleAvatar(
-                  radius: 30,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: FittedBox(child: Text('${tr.valueGet}')),
-                  ),
-                ),
-                title: Text(
-                  tr.title,
-                  style: Theme.of(context).textTheme.title,
-                ),
-                subtitle: Text(tr.dateGet),
-                trailing: MediaQuery.of(context).size.width < 480
-                    ? IconButton(
-                        icon: Icon(
-                          Icons.delete,
-                          color: Colors.redAccent,
-                        ),
-                        onPressed: () {
-                          removerTransction(tr.id);
-                        })
-                    : FlatButton.icon(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.delete,
-                          color: Theme.of(context).errorColor,
-                        ),
-                        label: Text("Excluir"),
-                        textColor: Theme.of(context).errorColor,
-                      ),
-              ),
-            );
+            return TransactionItem(
+                tr: tr, removerTransction: removerTransction);
           },
         );
 }

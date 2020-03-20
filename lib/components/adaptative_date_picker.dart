@@ -30,7 +30,7 @@ class AdaptativeDatePicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Platform.isAndroid
+    return Platform.isIOS
         ? Container(
             height: 180,
             child: CupertinoDatePicker(

@@ -11,18 +11,34 @@ class AdaptativeButton extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
-    return Platform.isAndroid
+    return Platform.isIOS
         ? CupertinoButton(
             color: Theme.of(context).primaryColor,
             child: Text(label),
             onPressed: onPressed,
             padding: EdgeInsets.symmetric(horizontal: 20),
           )
-        : RaisedButton(
-            color: Theme.of(context).primaryColor,
-            textColor: Theme.of(context).textTheme.button.color,
-            onPressed: onPressed,
-            child: Text(label),
+        : InkWell(
+            onTap: onPressed,
+            child: Container(
+              padding: EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  color: Theme.of(context).primaryColor),
+              child: Text(
+                label,
+                style: TextStyle(
+                  color: Theme.of(context).textTheme.button.color,
+                ),
+              ),
+            ),
           );
+
+    /*RaisedButton(
+      color: Theme.of(context).primaryColor,
+      textColor: Theme.of(context).textTheme.button.color,
+      onPressed: onPressed,
+      child: Text(label),
+    );*/
   }
 }
