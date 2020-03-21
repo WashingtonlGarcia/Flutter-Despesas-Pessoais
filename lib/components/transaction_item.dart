@@ -1,7 +1,9 @@
+import 'dart:math';
+
 import 'package:despesasPessoais/models/transaction.dart';
 import 'package:flutter/material.dart';
 
-class TransactionItem extends StatelessWidget {
+class TransactionItem extends StatefulWidget {
   const TransactionItem({
     Key key,
     @required this.tr,
@@ -10,6 +12,26 @@ class TransactionItem extends StatelessWidget {
 
   final Transaction tr;
   final void Function(String) removerTransction;
+
+  @override
+  _TransactionItemState createState() => _TransactionItemState();
+}
+
+class _TransactionItemState extends State<TransactionItem> {
+  static const colors = [
+    Colors.red,
+    Colors.purple,
+    Colors.orange,
+    Colors.blue,
+    Colors.black,
+  ];
+  Color _backgroundColor;
+  @override
+  void initState() {
+    super.initState();
+    int i = Random().nextInt(colors.length);
+    _backgroundColor = colors[i];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,17 +43,18 @@ class TransactionItem extends StatelessWidget {
       ),
       child: ListTile(
         leading: CircleAvatar(
+          backgroundColor: _backgroundColor,
           radius: 30,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: FittedBox(child: Text('${tr.valueGet}')),
+            child: FittedBox(child: Text('${widget.tr.valueGet}')),
           ),
         ),
         title: Text(
-          tr.title,
+          widget.tr.title,
           style: Theme.of(context).textTheme.title,
         ),
-        subtitle: Text(tr.dateGet),
+        subtitle: Text(widget.tr.dateGet),
         trailing: MediaQuery.of(context).size.width < 480
             ? IconButton(
                 icon: const Icon(
@@ -39,7 +62,7 @@ class TransactionItem extends StatelessWidget {
                   color: Colors.redAccent,
                 ),
                 onPressed: () {
-                  removerTransction(tr.id);
+                  widget.removerTransction(widget.tr.id);
                 })
             : FlatButton.icon(
                 onPressed: () {},
